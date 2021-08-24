@@ -1,7 +1,8 @@
+import { IProduct } from 'Models/types';
 import React from 'react';
 import { Card, Col } from 'react-bootstrap';
 
-const Product = () => {
+const Product = ({ product }: IProduct) => {
   return (
     <Col md={3} className="mb-3">
       <Card>

@@ -1,24 +1,24 @@
 import requests from './httpService';
 
-class ProductService {
+class StoreService {
   getProducts(): Promise<any> {
-    return requests.get('/product');
+    return requests.get('/store');
   }
 
   getProductsByID(id: string): Promise<any> {
-    return requests.get(`/product/ ${id}`);
+    return requests.get(`/store/ ${id}`);
   }
 
   addProduct(body: object): Promise<any> {
-    return requests.post(`/product/`, body);
+    return requests.post(`/store/`, body);
   }
 
   updateProduct(id: string, body: object): Promise<any> {
-    return requests.post(`/product/ ${id}`, body);
+    return requests.post(`/store/ ${id}`, body);
   }
 
   deleteProduct(id: string): Promise<any> {
-    return requests.delete(`/product/ ${id}`);
+    return requests.delete(`/store/ ${id}`);
   }
 }
-export default new ProductService();
+export default new StoreService();

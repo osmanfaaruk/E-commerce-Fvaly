@@ -20,6 +20,7 @@
     "@typescript-eslint/no-use-before-define": "off",
     "prefer-const": "error",
     "react/prop-types": "off",
-    "no-unused-vars": "off"
+    "no-unused-vars": "off",
+    "lines-between-class-members": "off"
   }
 }
