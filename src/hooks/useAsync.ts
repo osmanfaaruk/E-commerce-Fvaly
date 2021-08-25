@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-
 type StatusType = 'idle' | 'pending' | 'success' | 'error';
+
 const useAsync = <T>(asyncFunction: () => Promise<T>) => {
   const [data, setData] = useState<T | null>(null);
   const [status, setStatus] = useState<StatusType>('idle');
@@ -25,6 +25,7 @@ const useAsync = <T>(asyncFunction: () => Promise<T>) => {
 
   return {
     data,
+    error,
     isLoading: status === 'pending',
     isSuccess: status === 'success',
     isError: status === 'error',
