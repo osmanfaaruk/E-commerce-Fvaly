@@ -10,7 +10,7 @@ const Product = ({ product }: IProps) => {
   return (
     <Col md={3} className="mb-3">
       <Card>
-        <Card.Img variant="top" src={imageUrlParser + image} />
+        <Card.Img variant="top" src={imageUrlParser(image)} />
         <Card.Body>
           <Card.Text>{name}</Card.Text>
         </Card.Body>
