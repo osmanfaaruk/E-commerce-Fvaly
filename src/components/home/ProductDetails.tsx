@@ -1,6 +1,6 @@
 import useAsync from 'hooks/useAsync';
 import { IProduct } from 'Models/types';
-import React from 'react';
+import React, { useCallback } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import { AiOutlineShoppingCart } from 'react-icons/ai';
 import { useParams } from 'react-router-dom';
@@ -13,10 +13,17 @@ interface IPrams {
 }
 const ProductDetails = () => {
   const { id } = useParams<IPrams>();
-  const { data, isLoading, isSuccess, isError, error } = useAsync<IProduct>(
-    () => ProductService.getProductsByID(id)
-  );
+  const getProduct = useCallback(() => {
+    return ProductService.getProductsByID(id);
+  }, [id]);
+  const { data, isLoading, isSuccess, isError, error } =
+    useAsync<IProduct>(getProduct);
   const { name, image, description, price } = (data || {}) as IProduct;
+
+  // Redux process
+
+  //  const dispatch = useDispatch(function)
+
   return (
     <div className="product__details__component my-5">
       <Container>
@@ -42,6 +49,7 @@ const ProductDetails = () => {
               </Col>
             </Row>
           )}
+          {isError && <h1>{error}</h1>}
         </div>
       </Container>
     </div>
