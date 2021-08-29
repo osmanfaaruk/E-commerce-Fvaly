@@ -3,7 +3,9 @@ import { IProduct } from 'Models/types';
 import React, { useCallback } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import { AiOutlineShoppingCart } from 'react-icons/ai';
+import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import { addToCart } from 'redux/actions/cartAction';
 import ProductService from 'services/ProductService';
 import ProductsSkeleton from 'skelatons/ProductsSkeleton';
 import imageUrlParser from 'utils/imageUrlParser';
@@ -22,7 +24,7 @@ const ProductDetails = () => {
 
   // Redux process
 
-  //  const dispatch = useDispatch(function)
+  const dispatch = useDispatch();
 
   return (
     <div className="product__details__component my-5">
@@ -41,7 +43,10 @@ const ProductDetails = () => {
               <Col>
                 <h3>{name}</h3>
                 <h1>${price}</h1>
-                <button className="btn btn-primary">
+                <button
+                  className="btn btn-primary"
+                  onClick={() => dispatch(addToCart(data as IProduct))}
+                >
                   <AiOutlineShoppingCart />
                   Add To Cart
                 </button>
