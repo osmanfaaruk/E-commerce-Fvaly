@@ -11,8 +11,13 @@ import { FiPhoneCall, FiShoppingBag } from 'react-icons/fi';
 import { BiSearchAlt2, BiUser } from 'react-icons/bi';
 import { AiOutlineMail, AiOutlineMobile } from 'react-icons/ai';
 import logo from 'asset/images/fvaly.png';
+import { useSelector } from 'react-redux';
+import { AppState } from 'redux/store';
+import { Link } from 'react-router-dom';
+import { IProduct } from 'Models/types';
 
 const Header = () => {
+  const cart: IProduct[] = useSelector((state: AppState) => state.cartReducer);
   return (
     <div className="header__component">
       <div className="top-header py-2 bg-light border-bottom">
@@ -20,7 +25,6 @@ const Header = () => {
           <ul className="list-unstyled d-flex align-items-center gap-4">
             <li>
               <FiPhoneCall />
-
               <a href="tel:01959705959">019507905959</a>
             </li>
             <li>
@@ -54,7 +58,10 @@ const Header = () => {
             </InputGroup>
             <ul className="icon-list list-unstyled d-flex gap-3">
               <li>
-                <FiShoppingBag />
+                <Link to="/checkout">
+                  <FiShoppingBag />
+                  <span className="badge bg-primary">{cart.length}</span>
+                </Link>
               </li>
               <li>
                 <BiUser />
